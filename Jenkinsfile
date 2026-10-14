@@ -17,11 +17,10 @@ pipeline {
         }
 
         stage('Build and Test') {
-            steps {
-                sh 'python3 -m pip install --user -r requirements.txt'
-                sh 'python3 -m py_compile app.py'
-            }
-        }
+    steps {
+        sh 'python3 -m py_compile app.py'
+    }
+}
 
         stage('Docker Build') {
             steps {

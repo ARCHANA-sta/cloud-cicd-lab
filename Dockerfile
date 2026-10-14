@@ -1,10 +1,13 @@
-from flask import Flask
+FROM python:3.11
 
-app = Flask(__name__)
+WORKDIR /app
 
-@app.route("/")
-def home():
-    return "Hello from Jenkins CI/CD Pipeline!"
+COPY requirements.txt .
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY app.py .
+
+EXPOSE 5000
+
+CMD ["python", "app.py"]
